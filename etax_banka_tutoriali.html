@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Si të Regjistroni Llogarinë Bankare në e-Filing | DPT</title>
+
+<style>
+/* ================================================================
+   DPT COLOR PALETTE
+   Navy:     #111111  /  #111111
+   Orange:   #E87722  /  #CC6600 (e-Filing)
+   Red:      #CC0000  (eagle)
+   Dark:     #111111
+   ================================================================ */
+:root {
+  --navy:        #111111;
+  --navy-dark:   #0d0d0d;
+  --navy-light:  #e8e8e8;
+  --navy-pale:   #f7f7f7;
+  --orange:      #E87722;
+  --orange-dark: #C4601A;
+  --orange-light:#FFF3E8;
+  --red-dpt:     #CC0000;
+  --etax-orange: #CC6600;
+
+  --bg:          #f4f5f8;
+  --white:       #ffffff;
+  --card:        #ffffff;
+  --border:      #dde3ed;
+  --border-light:#eef0f5;
+
+  --text:        #1a1c2e;
+  --text2:       #4a5568;
+  --text3:       #8898aa;
+
+  --green:       #1a8a5a;
+  --green-bg:    #edf7f2;
+  --amber:       #b45309;
+  --amber-bg:    #fef8ee;
+
+  --shadow-sm:   0 1px 4px rgba(26,58,107,0.08);
+  --shadow-md:   0 4px 16px rgba(26,58,107,0.12);
+  --shadow-lg:   0 8px 32px rgba(26,58,107,0.14);
+  --radius:      10px;
+  --radius-sm:   7px;
+
+  /* Nav faithful */
+  --hdr-bg:      #c8d3e2;
+  --nav-bg:      #636B4A;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Times New Roman', Times, serif;
+  background: var(--bg);
+  min-height: 100vh;
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ═══════════════════════════════════════
+   HEADER — faithful e-Filing
+═══════════════════════════════════════ */
+.ef-header {
+  background: var(--hdr-bg);
+  border-bottom: 1px solid #a8b8cc;
+  padding: 7px 24px;
+  display: flex; align-items: center; gap: 16px;
+  position: sticky; top: 0; z-index: 200;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.14);
+}
+.ef-logo-wrap { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.ef-logo-img  { width: 50px; height: 46px; object-fit: contain; display: block; }
+.ef-logo-name {
+  font-size: 10px; font-weight: 700; color: #111;
+  line-height: 1.35; text-transform: uppercase; letter-spacing: 0.2px;
+}
+.ef-brand     { flex: 1; text-align: center; }
+.ef-brand-text { font-size: 22px; font-weight: 800; font-family: Arial, sans-serif; line-height: 1; }
+.ef-brand-text .etax    { color: var(--etax-orange); }
+.ef-brand-text .shqiperi { color: var(--red-dpt); }
+.ef-header-right { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; flex-shrink: 0; }
+.ef-badge     {
+  background: var(--orange); color: white;
+  font-size: 9px; font-weight: 700; padding: 3px 10px;
+  letter-spacing: 1px; text-transform: uppercase;
+}
+.ef-badge-sub { font-size: 9px; color: #555; font-weight: 500; }
+
+/* ═══════════════════════════════════════
+   NAV TABS — faithful olive
+═══════════════════════════════════════ */
+.ef-nav {
+  background: var(--nav-bg);
+  display: flex; padding: 0 24px;
+  border-bottom: 2px solid #4a5235;
+}
+.ef-nav-tab {
+  color: rgba(255,255,255,0.82);
+  font-family: Arial, sans-serif; font-size: 12px; font-weight: 600;
+  padding: 8px 16px; cursor: default; border: none; background: transparent;
+  border-right: 1px solid rgba(255,255,255,0.10);
+  white-space: nowrap; margin-top: 2px; border-radius: 4px 4px 0 0;
+}
+.ef-nav-tab:first-child { border-left: 1px solid rgba(255,255,255,0.10); }
+.ef-nav-tab.active-tab  { background: white; color: #333; font-weight: 700; }
+
+/* ═══════════════════════════════════════
+   RIBBON — DPT identity colors
+═══════════════════════════════════════ */
+.ribbon {
+  background: #111111;
+  border-bottom: 3px solid #CC0000;
+  display: flex; align-items: stretch;
+}
+.ribbon-left {
+  flex: 1; padding: 11px 24px;
+  border-right: 1px solid rgba(255,255,255,0.10);
+}
+.ribbon-title {
+  font-size: 11px; font-weight: 700; color: #ffffff;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+.ribbon-sub {
+  font-size: 10px; color: rgba(255,255,255,0.45); margin-top: 2px; font-weight: 400;
+}
+.ribbon-right {
+  background: #CC0000;
+  padding: 0 24px;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  min-width: 120px;
+}
+.ribbon-step-label {
+  font-size: 8px; font-weight: 700; color: rgba(255,255,255,0.70);
+  text-transform: uppercase; letter-spacing: 2px;
+}
+.ribbon-counter {
+  font-size: 20px; font-weight: 800; color: white;
+  line-height: 1; margin-top: 2px; letter-spacing: 0.5px;
+}
+
+/* ═══════════════════════════════════════
+   MAIN
+═══════════════════════════════════════ */
+.ef-main { background: var(--bg); padding: 0 0 60px; }
+.ef-container { max-width: 1060px; margin: 0 auto; padding: 20px 16px 0; }
+
+/* ═══════════════════════════════════════
+   PROGRESS CARD
+═══════════════════════════════════════ */
+.progress-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px 20px;
+  margin-bottom: 14px; box-shadow: var(--shadow-sm);
+}
+.progress-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 10px;
+}
+.progress-label {
+  font-size: 11px; font-weight: 600; color: var(--text2);
+  display: flex; align-items: center; gap: 8px; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.progress-label::before {
+  content: ''; width: 14px; height: 2px;
+  background: #CC0000; border-radius: 2px; display: inline-block;
+}
+.progress-pct { font-size: 13px; font-weight: 700; color: #111111; }
+.progress-track {
+  background: var(--border-light); border-radius: 99px; height: 4px; overflow: hidden;
+}
+.progress-fill {
+  background: linear-gradient(90deg, #111111, #CC0000);
+  height: 100%; border-radius: 99px;
+  transition: width 0.5s cubic-bezier(.4,0,.2,1);
+}
+.step-dots {
+  display: flex; justify-content: center; gap: 7px; margin-top: 12px; flex-wrap: wrap;
+}
+.step-dot {
+  width: 30px; height: 30px; border-radius: 50%;
+  border: 1.5px solid var(--border); background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 11px; font-weight: 700;
+  color: var(--text3); transition: all 0.25s;
+}
+.step-dot:hover { border-color: #CC0000; color: #CC0000; }
+.step-dot.done  { background: var(--green-bg); border-color: var(--green); color: var(--green); }
+.step-dot.active {
+  background: #CC0000; border-color: #CC0000; color: white;
+  transform: scale(1.1); box-shadow: 0 0 0 3px rgba(204,0,0,0.18);
+}
+
+/* ═══════════════════════════════════════
+   STEP PANEL
+═══════════════════════════════════════ */
+.step-panel {
+  display: none; background: var(--white);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  overflow: hidden; box-shadow: var(--shadow-md);
+  animation: fadeUp 0.3s ease;
+}
+.step-panel.active { display: block; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Step header */
+.step-hdr {
+  background: #111111;
+  padding: 18px 24px; display: flex; align-items: center; gap: 14px;
+  border-bottom: 3px solid #CC0000;
+}
+.step-hdr-num {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--orange); color: white;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 17px; font-weight: 800; flex-shrink: 0;
+}
+.step-hdr-label {
+  font-size: 9px; color: rgba(255,255,255,0.55);
+  font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px;
+}
+.step-hdr-info h3 {
+  font-size: 16px; font-weight: 700; color: white; margin-top: 3px;
+}
+.step-hdr-info p {
+  font-size: 11px; color: rgba(255,255,255,0.60); margin-top: 2px; font-weight: 400;
+}
+
+/* Step body */
+.step-body {
+  padding: 24px; display: grid;
+  grid-template-columns: 1fr 1fr; gap: 24px; align-items: start;
+}
+@media (max-width: 760px) {
+  .step-body { grid-template-columns: 1fr; gap: 18px; }
+}
+
+/* ═══════════════════════════════════════
+   INSTRUCTION ITEMS
+═══════════════════════════════════════ */
+.instr-list { display: flex; flex-direction: column; gap: 6px; }
+.instr-item {
+  display: flex; gap: 10px; align-items: flex-start;
+  padding: 10px 14px; border-radius: var(--radius-sm);
+  background: var(--navy-pale); border-left: 2px solid #111111;
+  transition: all 0.15s;
+}
+.instr-item:hover {
+  background: var(--navy-light); border-left-color: #CC0000;
+  transform: translateX(2px);
+}
+.instr-icon {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: #CC0000; flex-shrink: 0; margin-top: 8px;
+  font-size: 0;
+}
+.instr-text {
+  font-size: 12px; font-weight: 400; color: var(--text); line-height: 1.6;
+}
+.instr-text strong { font-weight: 700; color: #111111; }
+
+/* ═══════════════════════════════════════
+   INFO BOXES
+═══════════════════════════════════════ */
+.info-box {
+  border-radius: var(--radius-sm); padding: 10px 14px;
+  font-size: 12px; font-weight: 400; line-height: 1.55; margin-top: 8px;
+}
+.info-box.warning { background: var(--amber-bg); border-left: 2px solid var(--amber); color: var(--amber); }
+.info-box.success { background: var(--green-bg); border-left: 2px solid var(--green); color: var(--green); }
+.info-box.tip     { background: var(--navy-pale); border-left: 2px solid #111111; color: var(--text2); }
+.info-box strong  { font-weight: 700; }
+
+/* ═══════════════════════════════════════
+   TOOLTIPS
+═══════════════════════════════════════ */
+.tip-section-lbl {
+  font-size: 9px; font-weight: 700; color: var(--text3);
+  text-transform: uppercase; letter-spacing: 1px;
+  margin-top: 12px; margin-bottom: 5px;
+}
+.tip-grid { display: flex; flex-wrap: wrap; gap: 4px; }
+.tip-btn {
+  display: inline-flex; align-items: center;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 3px; padding: 3px 10px;
+  font-size: 10px; font-weight: 500; color: var(--text2);
+  cursor: pointer; position: relative; transition: all 0.15s;
+  font-family: 'Times New Roman', Times, serif; letter-spacing: 0.1px;
+}
+.tip-btn:hover { background: #f7f7f7; color: #CC0000; border-color: #CC0000; }
+.tip-btn:hover .tip-popup { display: block; }
+.tip-popup {
+  display: none; position: absolute;
+  bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+  background: #0d0d0d; color: white;
+  font-size: 11px; font-weight: 400; padding: 10px 13px;
+  border-radius: 6px; width: 230px; line-height: 1.55;
+  box-shadow: var(--shadow-lg); z-index: 500; pointer-events: none;
+  font-family: 'Times New Roman', Times, serif;
+}
+.tip-popup::after {
+  content: ''; position: absolute;
+  top: 100%; left: 50%; transform: translateX(-50%);
+  border: 6px solid transparent; border-top-color: #0d0d0d;
+}
+
+/* ═══════════════════════════════════════
+   CHECKLIST
+═══════════════════════════════════════ */
+.checklist-wrap {
+  margin-top: 14px; background: var(--bg);
+  border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px;
+}
+.checklist-title {
+  font-size: 9px; font-weight: 700; color: var(--text3);
+  text-transform: uppercase; letter-spacing: 1px; margin-bottom: 9px;
+}
+.checklist-items { display: flex; flex-direction: column; gap: 5px; }
+.cl-item {
+  display: flex; align-items: center; gap: 9px;
+  padding: 7px 11px; border-radius: 5px;
+  background: var(--white); border: 1px solid var(--border-light);
+  cursor: pointer; user-select: none; transition: all 0.18s;
+}
+.cl-item:hover { border-color: var(--orange); background: var(--orange-light); }
+.cl-item.checked { background: rgba(204,0,0,0.06); border-color: rgba(204,0,0,0.30); }
+.cl-item.checked .cl-label { text-decoration: line-through; color: #999; }
+.cl-box {
+  width: 16px; height: 16px; border-radius: 3px;
+  border: 1.5px solid var(--border); background: white;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: all 0.18s;
+  font-size: 10px; font-weight: 800; color: transparent;
+}
+.cl-item.checked .cl-box { background: #CC0000; border-color: #CC0000; color: white; }
+.cl-label { font-size: 11px; font-weight: 500; color: var(--text2); }
+
+/* ═══════════════════════════════════════
+   BROWSER MOCKUP
+═══════════════════════════════════════ */
+.mockup-wrap  { position: relative; }
+.mockup-label {
+  font-size: 9px; font-weight: 700; text-transform: uppercase;
+  color: var(--text3); letter-spacing: 1px; margin-bottom: 7px;
+  display: flex; align-items: center; gap: 5px;
+}
+.mockup-label::before {
+  content: ''; width: 10px; height: 2px;
+  background: #CC0000; display: inline-block;
+}
+.browser-chrome {
+  background: white; border: 1px solid var(--border);
+  border-radius: var(--radius-sm); overflow: hidden; box-shadow: var(--shadow-md);
+}
+.browser-bar {
+  background: #e8ecf0; padding: 6px 10px;
+  display: flex; align-items: center; gap: 5px;
+  border-bottom: 1px solid var(--border);
+}
+.b-dot { width: 8px; height: 8px; border-radius: 50%; }
+.b-dot.r { background: #fc5f5a; }
+.b-dot.y { background: #fcbb40; }
+.b-dot.g { background: #34ca49; }
+.b-url {
+  flex: 1; background: white; border-radius: 3px;
+  border: 1px solid var(--border); padding: 2px 8px;
+  font-size: 9px; color: var(--text3); font-family: monospace; margin-left: 6px;
+}
+.sim-dpt-hdr {
+  background: #c8d3e2; border-bottom: 1px solid #a8b8cc;
+  padding: 5px 10px; display: flex; align-items: center; gap: 7px;
+}
+.sim-dpt-logo-text {
+  font-size: 6.5px; font-weight: 800; color: #111;
+  text-transform: uppercase; line-height: 1.2;
+}
+.sim-etax {
+  margin-left: auto; font-size: 11px; font-weight: 900; font-family: Arial, sans-serif;
+}
+.sim-etax .o { color: #CC6600; }
+.sim-etax .r { color: #CC0000; }
+.sim-nav {
+  background: #636B4A; display: flex; padding: 0 6px; gap: 1px;
+}
+.sim-tab {
+  color: rgba(255,255,255,0.85); font-size: 8.5px; font-weight: 600;
+  padding: 5px 8px; border-radius: 3px 3px 0 0; margin-top: 2px; white-space: nowrap;
+}
+.sim-tab.active-sim-tab { background: white; color: #333; font-weight: 700; }
+.sim-tab.hl-sim-tab     { background: rgba(255,255,255,0.18); }
+.sim-body { background: #f5f7fa; padding: 8px 10px; }
+
+/* Login sim */
+.sim-login { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+.sim-welcome h4 { font-size: 9px; font-weight: 800; color: #222; margin-bottom: 3px; }
+.sim-welcome p  { font-size: 8px; color: #555; line-height: 1.4; }
+.sim-form-box { background: white; border: 1.5px solid #CC6600; border-radius: 4px; padding: 7px; }
+.sim-field { margin-bottom: 5px; }
+.sim-field label { font-size: 7px; font-weight: 700; color: #555; display: block; margin-bottom: 2px; }
+.sim-input { width: 100%; padding: 3px 6px; border: 1px solid #ddd; border-radius: 3px; font-size: 8px; background: #fafafa; }
+.sim-input.hl { border-color: #CC6600; animation: pulseInput 2s infinite; }
+@keyframes pulseInput {
+  0%,100% { box-shadow: 0 0 0 1px rgba(204,102,0,0.20); }
+  50%      { box-shadow: 0 0 0 3px rgba(204,102,0,0.35); }
+}
+.sim-check { display: flex; align-items: center; gap: 3px; font-size: 7px; color: #444; margin-bottom: 5px; }
+.sim-btn { background: #111111; color: white; font-size: 8px; font-weight: 700; padding: 4px 8px; border-radius: 2px; border: none; cursor: pointer; width: 100%; font-family: 'Times New Roman', Times, serif; }
+
+/* Dropdown */
+.sim-dd-wrap { position: relative; display: inline-block; }
+.sim-dd-menu { position: absolute; top: 100%; left: 0; background: white; border: 1px solid #ddd; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.14); z-index: 10; min-width: 130px; }
+.sim-dd-item { padding: 5px 9px; font-size: 9px; font-weight: 500; color: #333; }
+.sim-dd-item.hl-dd { background: rgba(204,102,0,0.10); color: #CC6600; font-weight: 700; border-left: 2px solid #CC6600; animation: pulseDD 2s infinite; }
+@keyframes pulseDD { 0%,100% { background: rgba(204,102,0,0.07); } 50% { background: rgba(204,102,0,0.18); } }
+
+/* Sidebar */
+.sim-profile-layout { display: grid; grid-template-columns: 90px 1fr; min-height: 130px; }
+.sim-sidebar { background: #f0f0f0; padding: 5px; border-right: 1px solid #ddd; font-size: 7px; color: #333; }
+.sim-sidebar-item { padding: 4px 6px; border-radius: 2px; margin-bottom: 2px; font-weight: 500; }
+.sim-sidebar-item.active-s { background: #CC6600; color: white; font-weight: 700; }
+.sim-sidebar-item.hl-s { background: rgba(204,102,0,0.14); color: #CC6600; border-left: 2px solid #CC6600; font-weight: 700; animation: pulseSide 2s infinite; }
+@keyframes pulseSide { 0%,100% { background: rgba(204,102,0,0.10); } 50% { background: rgba(204,102,0,0.22); } }
+.sim-profile-content { padding: 7px; background: #f8f9fa; }
+.sim-profile-content h5 { font-size: 9px; font-weight: 800; color: #CC6600; margin-bottom: 5px; border-bottom: 1px solid #eee; padding-bottom: 3px; }
+.sim-row { display: grid; grid-template-columns: 1fr 1fr; font-size: 7px; padding: 2px 0; border-bottom: 1px solid #f0f0f0; }
+.sim-row span:first-child { color: #666; }
+.sim-row span:last-child  { font-weight: 700; color: #222; }
+
+/* Bank buttons */
+.sim-bank-add { background: white; border: 1.5px solid #CC6600; color: #CC6600; font-size: 8px; font-weight: 700; padding: 4px 9px; border-radius: 3px; cursor: pointer; animation: pulseBankBtn 2s infinite; font-family: 'Times New Roman', Times, serif; }
+@keyframes pulseBankBtn { 0%,100% { box-shadow: 0 0 0 1px rgba(204,102,0,0.18); } 50% { box-shadow: 0 0 0 4px rgba(204,102,0,0.32); } }
+.sim-dl-btn { background: white; border: 1px solid #bbb; color: #555; font-size: 8px; font-weight: 600; padding: 3px 8px; border-radius: 2px; cursor: pointer; font-family: 'Times New Roman', Times, serif; }
+.sim-bank-form { background: white; border-radius: 4px; border: 1px solid #ddd; padding: 8px; }
+.sim-bank-form h5 { font-size: 9px; font-weight: 800; color: #CC6600; margin-bottom: 6px; border-bottom: 1px solid #eee; padding-bottom: 3px; }
+.sim-bf { margin-bottom: 4px; }
+.sim-bf label { display: block; font-size: 7px; font-weight: 700; color: #555; margin-bottom: 1px; }
+.sim-bf .req { color: #cc0000; }
+.sim-bfinput { width: 100%; padding: 3px 5px; border: 1px solid #ddd; border-radius: 2px; font-size: 8px; background: #fafafa; }
+.sim-bfinput.ok { border-color: #1a8a5a; background: #f0fff8; }
+.sim-bfgrid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+.sim-save { background: #111111; color: white; font-size: 8px; font-weight: 700; padding: 4px 12px; border-radius: 2px; border: none; cursor: pointer; float: right; margin-top: 4px; font-family: 'Times New Roman', Times, serif; animation: savePulse 1.8s infinite; }
+@keyframes savePulse { 0%,100% { box-shadow: 0 0 0 1px rgba(26,58,107,0.25); } 50% { box-shadow: 0 0 0 5px rgba(26,58,107,0.45); } }
+
+/* ═══════════════════════════════════════
+   PULSE CLICK INDICATOR
+═══════════════════════════════════════ */
+.click-spot {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 9px;
+  background: #f7f7f7; border: 1px solid rgba(0,0,0,0.14);
+  border-radius: 3px; padding: 5px 12px;
+}
+.pulse-ring {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: #CC0000; position: relative; flex-shrink: 0;
+}
+.pulse-ring::before {
+  content: ''; position: absolute; inset: -3px; border-radius: 50%;
+  border: 1.5px solid #CC0000; animation: pulse-anim 1.6s ease-out infinite;
+}
+.pulse-ring::after {
+  content: ''; position: absolute; inset: -6px; border-radius: 50%;
+  border: 1.5px solid #CC0000; animation: pulse-anim 1.6s ease-out infinite 0.4s;
+}
+@keyframes pulse-anim {
+  0%   { opacity: 0.75; transform: scale(0.75); }
+  100% { opacity: 0;    transform: scale(1.9); }
+}
+.pulse-label { font-size: 10px; font-weight: 600; color: #111111; letter-spacing: 0.2px; }
+
+/* Highlight boxes */
+.hl-box     { border: 1.5px solid #CC6600 !important; animation: hl-pulse 2s ease-in-out infinite; }
+.hl-sidebar { animation: hl-pulse 2s ease-in-out infinite; border-left: 2px solid #CC6600 !important; }
+@keyframes hl-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(204,102,0,0); } 50% { box-shadow: 0 0 0 4px rgba(204,102,0,0.22); } }
+
+/* ═══════════════════════════════════════
+   FIELD LIST (step 6) — aligned
+═══════════════════════════════════════ */
+.field-list { display: flex; flex-direction: column; gap: 1px; }
+.field-item {
+  display: grid;
+  grid-template-columns: 100px 1fr auto;
+  gap: 0 12px;
+  align-items: start;
+  padding: 10px 14px;
+  background: var(--white);
+  border-bottom: 1px solid var(--border-light);
+  transition: background 0.15s;
+}
+.field-item:first-child { border-radius: var(--radius-sm) var(--radius-sm) 0 0; border: 1px solid var(--border); border-bottom: 1px solid var(--border-light); }
+.field-item:last-child  { border-radius: 0 0 var(--radius-sm) var(--radius-sm); border: 1px solid var(--border); }
+.field-item:not(:first-child):not(:last-child) { border: 1px solid var(--border); border-top: none; }
+.field-item:hover { background: var(--navy-pale); }
+.req-badge {
+  font-size: 8px; font-weight: 700; text-transform: uppercase;
+  padding: 2px 7px; border-radius: 2px; letter-spacing: 0.3px;
+  white-space: nowrap; display: inline-block; margin-top: 2px;
+  align-self: start;
+}
+.req-yes { background: rgba(0,0,0,0.08); color: #111111; }
+.req-no  { background: var(--border-light); color: var(--text3); }
+.field-content { min-width: 0; }
+.field-name { font-size: 12px; font-weight: 700; color: var(--text); }
+.field-desc { font-size: 11px; color: var(--text2); font-weight: 400; margin-top: 2px; line-height: 1.45; }
+.iban-fmt {
+  background: var(--orange-light); border: 1px solid rgba(232,119,34,0.30);
+  border-radius: 3px; padding: 3px 8px; font-family: monospace;
+  font-size: 10px; color: var(--orange-dark); font-weight: 600;
+  letter-spacing: 0.8px; margin-top: 4px; display: inline-block;
+}
+.field-tip-col { align-self: center; }
+
+/* ═══════════════════════════════════════
+   NAV BUTTONS
+═══════════════════════════════════════ */
+.nav-buttons {
+  padding: 14px 24px; background: var(--bg);
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 22px; border-radius: 4px;
+  font-size: 12px; font-weight: 600; cursor: pointer;
+  transition: all 0.18s; border: none; font-family: 'Times New Roman', Times, serif;
+  letter-spacing: 0.3px; text-transform: uppercase;
+}
+.btn-back {
+  background: transparent; color: var(--text2);
+  border: 1px solid var(--border);
+}
+.btn-back:hover:not(:disabled) { background: var(--bg); color: var(--text); border-color: var(--text2); }
+.btn-next {
+  background: #111111; color: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+}
+.btn-next:hover { background: #CC0000; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(26,58,107,0.35); }
+.btn-finish {
+  background: var(--orange); color: white;
+  box-shadow: 0 2px 10px rgba(232,119,34,0.28);
+}
+.btn-finish:hover { background: var(--orange-dark); transform: translateY(-1px); }
+.btn:disabled { opacity: 0.30; cursor: not-allowed; transform: none !important; }
+.nav-info { font-size: 11px; font-weight: 500; color: var(--text3); letter-spacing: 0.3px; }
+
+/* ═══════════════════════════════════════
+   COMPLETION
+═══════════════════════════════════════ */
+
+
+/* ═══════════════════════════════════════
+   FOOTER — faithful e-Filing
+═══════════════════════════════════════ */
+.ef-footer {
+  background: linear-gradient(180deg, #a8c0d8 0%, #88aac8 100%);
+  padding: 9px 24px; display: flex;
+  justify-content: space-between; align-items: center;
+}
+.ef-footer-left, .ef-footer-right { font-size: 10px; color: #2a4060; font-weight: 500; }
+
+/* Step 5 alignment */
+#step-5 .step-body { align-items: start; }
+#step-5 .instr-item { align-items: flex-start; }
+#step-5 .mockup-wrap { align-self: start; }
+
+  /* ═══════════════════════════════════════
+     COMPLETION SCREEN — institutional
+  ═══════════════════════════════════════ */
+  .completion {
+    display: none;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    animation: fadeUp 0.4s ease;
+  }
+  .completion.show { display: block; }
+
+  .compl-accent-bar {
+    height: 4px;
+    background: linear-gradient(90deg, #111111 0%, #CC0000 50%, #111111 100%);
+  }
+
+  .compl-check-wrap {
+    display: flex; justify-content: center;
+    padding: 40px 32px 0;
+  }
+  .compl-check-outer {
+    width: 68px; height: 68px; border-radius: 50%;
+    background: #fdf2f2;
+    border: 2px solid #CC0000;
+    display: flex; align-items: center; justify-content: center;
+    animation: bounceIn 0.55s cubic-bezier(.4,0,.2,1);
+  }
+  @keyframes bounceIn {
+    0%   { transform: scale(0); }
+    60%  { transform: scale(1.12); }
+    100% { transform: scale(1); }
+  }
+  .compl-check-inner {
+    width: 24px; height: 14px;
+    border-bottom: 3px solid #CC0000;
+    border-left: 3px solid #CC0000;
+    transform: rotate(-45deg) translate(2px, -3px);
+  }
+
+  .compl-title {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px; font-weight: 800;
+    color: #111111; text-align: center;
+    letter-spacing: 0.5px;
+    padding: 20px 32px 0;
+    line-height: 1.3;
+  }
+
+  .compl-sub {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 14px; font-weight: 400;
+    color: var(--text2); text-align: center;
+    line-height: 1.7; padding: 14px 60px 0;
+  }
+
+  .compl-divider {
+    width: 48px; height: 2px;
+    background: #CC0000;
+    margin: 24px auto 0;
+  }
+
+  /* Three cards */
+  .compl-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin: 28px 0 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  @media (max-width: 640px) {
+    .compl-cards { grid-template-columns: 1fr; }
+    .compl-card  { border-right: none !important; border-bottom: 1px solid var(--border); }
+  }
+
+  .compl-card {
+    padding: 24px 22px;
+    border-right: 1px solid var(--border);
+    display: flex; flex-direction: column; gap: 14px;
+    background: #fafafa;
+    transition: background 0.18s;
+  }
+  .compl-card:last-child { border-right: none; }
+  .compl-card:hover { background: #f5f5f5; }
+
+  /* Card icons — geometric, institutional */
+  .compl-card-icon {
+    width: 40px; height: 40px;
+    background: #f0f0f0;
+    border: 1.5px solid #ddd;
+    border-top: 2px solid #CC0000;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: flex-start;
+    gap: 4px; padding: 8px;
+  }
+  .cci-bar {
+    width: 22px; height: 2px; background: #111111; border-radius: 1px;
+  }
+  .cci-bar-short { width: 14px; }
+  .cci-circle {
+    width: 16px; height: 16px; border-radius: 50%;
+    border: 2px solid #111111; background: transparent;
+    align-self: center;
+  }
+  .cci-line {
+    width: 20px; height: 1.5px; background: #555; border-radius: 1px;
+    align-self: flex-start;
+  }
+  .cci-line-short { width: 13px; }
+  .cci-arrow-wrap {
+    width: 100%; display: flex; flex-direction: column; gap: 5px; align-items: center;
+  }
+  .cci-arrow-right {
+    width: 18px; height: 2px; background: #111111;
+    position: relative;
+    align-self: flex-start;
+  }
+  .cci-arrow-right::after {
+    content: ''; position: absolute;
+    right: 0; top: -3px;
+    border-left: 5px solid #111111;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+  }
+  .cci-arrow-left {
+    width: 18px; height: 2px; background: #CC0000;
+    position: relative;
+    align-self: flex-end;
+  }
+  .cci-arrow-left::before {
+    content: ''; position: absolute;
+    left: 0; top: -3px;
+    border-right: 5px solid #CC0000;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+  }
+
+  .compl-card-body { flex: 1; }
+  .compl-card-title {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 13px; font-weight: 700; color: #111111;
+    margin-bottom: 7px; line-height: 1.3;
+  }
+  .compl-card-text {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 12px; font-weight: 400; color: var(--text2);
+    line-height: 1.6;
+  }
+
+  /* Restart button */
+  .compl-restart-btn {
+    display: block;
+    margin: 28px auto 36px;
+    background: #111111; color: white; border: none;
+    padding: 12px 48px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .compl-restart-btn:hover {
+    background: #CC0000;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(204,0,0,0.25);
+  }
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="ef-header">
+  <div class="ef-logo-wrap">
+    <img src="data:image/png;base64,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" class="ef-logo-img" alt="Logo DPT">
+    <div class="ef-logo-name">Drejtoria e<br>Përgjithshme<br>e Tatimeve</div>
+  </div>
+  <div class="ef-brand">
+    <div class="ef-brand-text"><span class="etax">E-Tax</span>&nbsp;<span class="shqiperi">Shqipëri</span></div>
+  </div>
+  <div class="ef-header-right">
+    <div class="ef-badge">Udhëzues</div>
+    <div class="ef-badge-sub">Regjistrim llogarie bankare</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="ef-nav">
+  <div class="ef-nav-tab">Deklarata</div>
+  <div class="ef-nav-tab">Kontabilitet</div>
+  <div class="ef-nav-tab active-tab">eFiling Im</div>
+  <div class="ef-nav-tab">Menaxhimi i Aksesit</div>
+  <div class="ef-nav-tab">Rreth eFiling</div>
+</div>
+
+<!-- RIBBON -->
+<div class="ribbon">
+  <div class="ribbon-left">
+    <div class="ribbon-title">Regjistrim i Llogarisë Bankare &mdash; Udhëzues Hap pas Hapi</div>
+    <div class="ribbon-sub">Drejtoria e Përgjithshme e Tatimeve &nbsp;&bull;&nbsp; Sistemi e-Filing</div>
+  </div>
+  <div class="ribbon-right">
+    <div class="ribbon-step-label">Hapi</div>
+    <div class="ribbon-counter" id="ribbonCounter">1 / 6</div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="ef-main">
+<div class="ef-container">
+
+  <!-- PROGRESS -->
+  <div class="progress-card">
+    <div class="progress-header">
+      <span class="progress-label" id="progressLabel">Hapi 1 — Hyrja në Sistem</span>
+      <span class="progress-pct" id="progressPct">0%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill" style="width:0%"></div>
+    </div>
+    <div class="step-dots" id="stepDots"></div>
+  </div>
+
+  <!-- ───── HAPI 1 ───── -->
+  <div class="step-panel active" id="step-1">
+    <div class="step-hdr">
+      <div class="step-hdr-num">1</div>
+      <div class="step-hdr-info">
+        <div class="step-hdr-label">Hapi 1 nga 6</div>
+        <h3>Hyrja në Sistemin e-Filing</h3>
+        <p>Identifikohuni me kredencialet tuaja të tatimpaguesit</p>
+      </div>
+    </div>
+    <div class="step-body">
+      <div>
+        <div class="instr-list">
+          <div class="instr-item"><div class="instr-icon"></div><div class="instr-text">Hapni shfletuesin dhe shkoni te faqja zyrtare <strong>e-Filing e DPT-së</strong></div></div>
+          <div class="instr-item"><div class="instr-icon"></div><div class="instr-text">Vendosni <strong>Numrin Personal të Identifikimit (NID)</strong> në fushën e parë</div></div>
+          <div class="instr-item"><div class="instr-icon"></div><div class="instr-text">Vendosni <strong>Fjalëkalimin (Password)</strong> në fushën e dytë</div></div>
+          <div class="instr-item"><div class="instr-icon"></div><div class="instr-text">Shënoni kutinë: <strong>"E lexova dhe bie dakord me termat dhe kushtet"</strong></div></div>
+          <div class="instr-item"><div class="instr-icon"></div><div class="instr-text">Klikoni butonin <strong>"Hyr në sistem"</strong></div></div>
+        </div>
+        <div class="info-box warning"><div>Nëse nuk jeni regjistruar, klikoni <strong>"Regjistrohuni këtu"</strong> dhe ndiqni procedurën e regjistrimit fillimisht.</div></div>
+        <div class="tip-section-lbl">Informacion shtesë</div>
+        <div class="tip-grid">
+          <button class="tip-btn">Çfarë është NID-i?<div class="tip-popup">NID-i (Numri Personal i Identifikimit) është numri unik me të cilin jeni regjistruar si tatimpagues në sistemin e DPT-së. E gjeni në dokumentin e regjistrimit tatimor ose në çdo korrespondencë zyrtare me DPT-në.</div></button>
+          <button class="tip-btn">Harrova fjalëkalimin<div class="tip-popup">Klikoni "Harrova fjalëkalimin" nën formularin e hyrjes. Ju dërgohet email me udhëzimet për rivendosje.</div></button>
+          <button class="tip-btn">E-Albania Login<div class="tip-popup">Alternativë: Mund të hyni nëpërmjet E-Albania duke klikuar butonin "E-Albania Login" në krye të formularit.</div></button>
+          
+        </div>
+        <div class="checklist-wrap">
+          <div class="checklist-title">Kontrollo para se të vazhdosh</div>
+          <div class="checklist-items">
+            <div class="cl-item" onclick="toggleCL(this)"><div class="cl-box">✓</div><span class="cl-label">Vendosa NID-in</span></div>
+            <div class="cl-item" onclick="toggleCL(this)"><div class="cl-box">✓</div><span class="cl-label">Vendosa Fjalëkalimin</span></div>
+            <div class="cl-item" onclick="toggleCL(this)"><div class="cl-box">✓</div><span class="cl-label">Shënova kutinë e termave dhe kushteve</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="mockup-wrap">
+        <div class="mockup-label">Pamja e Ekranit</div>
+        <div class="browser-chrome">
+          <div class="browser-bar">
+            <div class="b-dot r"></div><div class="b-dot y"></div><div class="b-dot g"></div>
+            <div class="b-url">efiling.tatime.gov.al</div>
+          </div>
+          <div>
+            <div class="sim-dpt-hdr">
+              <div class="sim-dpt-logo-text">DREJTORIA E<br>PËRGJITHSHME<br>E TATIMEVE</div>
+              <div class="sim-etax"><span class="o">E-Tax</span> <span class="r">Shqipëri</span></div>
+            </div>
+            <div class="sim-nav">
+              <div class="sim-tab">Deklarata</div>
+              <div class="sim-tab">Kontabilitet</div>
+              <div class="sim-tab">eFiling Im</div>
+              <div class="sim-tab">Menaxhimi i Aksesit</div>
+              <div class="sim-tab">Rreth eFiling</div>
+            </div>
+            <div class="sim-body">
+              <div class="sim-login">
+                <div class="sim-welcome">
+                  <h4>Mirëseerdhët</h4>
+                  <p style="font-size:9px; color:#555; line-height:1.4;">Nëse tashmë jeni të regjistruar mund të hyni në sistem. Në të kundërt duhet të regjistroheni.</p>
+                </div>
+                <div class="sim-form-box">
+                  <div class="sim-field"><label>Numri Personal i Identifikimit (NID)</label><input class="sim-input hl" type="text" placeholder="NID..."></div>
+                  <div class="sim-field"><label>Fjalëkalimi</label><input class="sim-input hl" type="password" placeholder="••••••••"></div>
+                  <div class="sim-check"><input type="checkbox" id="c1"><label for="c1">E lexova dhe bie dakord me <span style="color:#E87722;">termat</span></label></div>
+                  <button class="sim-btn">Hyr në sistem</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="click-spot">
+          <div class="pulse-ring"></div>
+          <span class="pulse-label">Plotësoni fushat dhe klikoni "Hyr në sistem"</span>
+        </div>
+      </div>
+    </div>
+    <div class="nav-buttons">
+      <button class="btn btn-back" disabled>&laquo; Kthehu</button>
+      <span class="nav-info">Hapi 1 / 6</span>
+      <button class="btn btn-next" onclick="goNext()">Vazhdo &raquo;</button>
+    </div>
+  </div>
+
+  <!-- ───── HAPI 2 ───── -->
+  <div class="step-panel" id="step-2">
+    <div class="step-hdr">
+      <div class="step-hdr-num">2</div>
+      <div class="step-hdr-info">
+        <div class="step-hdr-label">Hapi 2 nga 6</div>
+        <h3>Klikoni seksionin "eFiling Im"</h3>
+        <p>Ndodhet në menunë kryesore horizontale</p>
+      </div>
+    </div>
+    <div class="step-body">
+      <div>
+        <div class="instr-list">
+          <div class="instr-item"><div class="instr-icon"></div><div class="instr-text">Pas hyrjes, shihni menunë kryesore horizontale me ngjyrë <strong>të gjelbër</strong> në krye të faqes</div></div>
+          <div class="instr-item"><div class="instr-icon"></div><div class="instr-text">Klikoni mbi butonin <strong>"eFiling Im"</strong> — i treti nga e majta</div></div>
+          <div class="instr-item"><div class="instr-icon"></div><div class="instr-text">Do shfaqet një listë me opsione shtesë poshtë tij</div></div>
+        </div>
+        <div class="info-box tip"><div>Butoni <strong>"eFiling Im"</strong> gjendet midis "Kontabilitet" dhe "Menaxhimi i Aksesit". Kur klikohet, sfondi i saj ndryshon duke treguar se është aktive.</div></div>
+        <div class="tip-section-lbl">Informacion shtesë</div>
+        <div class="tip-grid">
+          <button class="tip-btn">Çfarë ka në eFiling Im?<div class="tip-popup">Seksioni "eFiling Im" përmban: Dokumentat e Mia, Njoftimet e Mia, Çështjet e Mia dhe Profili Im. Gjithçka personale ndodhet këtu.</div></button>
+          <button class="tip-btn">Skedarët e tjerë<div class="tip-popup">Menuja kryesore: Deklarata (dorëzim), Kontabilitet (llogari), eFiling Im (profili), Menaxhimi Aksesit (leje), Rreth eFiling (udhëzime).</div></button>
+        </div>
+        <div class="checklist-wrap">
+          <div class="checklist-title">Kontrollo para se të vazhdosh</div>
+          <div class="checklist-items">
+            <div class="cl-item" onclick="toggleCL(this)"><div class="cl-box">✓</div><span class="cl-label">Hyra me sukses në sistem</span></div>
+            <div class="cl-item" onclick="toggleCL(this)"><div class="cl-box">✓</div><span class="cl-label">Gjeta butonin "eFiling Im" në menunë kryesore</span></div>
+            <div class="cl-item" onclick="toggleCL(this)"><div class="cl-box">✓</div><span class="cl-label">Klikova mbi "eFiling Im"</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="mockup-wrap">
+        <div class="mockup-label">Pamja e Ekranit</div>
+        <div class="browser-chrome">
+          <div class="browser-bar">
+            <div class="b-dot r"></div><div class="b-dot y"></div><div class="b-dot g"></div>
+            <div class="b-url">efiling.tatime.gov.al</div>
+          </div>
+          <div>
+            <div class="sim-dpt-hdr">
+              <div class="sim-dpt-logo-text">DREJTORIA E PËRGJITHSHME E TATIMEVE</div>
+              <div class="sim-etax"><span class="o">E-Tax</span> <span class="r">Shqipëri</span></div>
+            </div>
+            <div class="sim-nav">
+              <div class="sim-tab">Deklarata</div>
+              <div class="sim-tab">Kontabilitet</div>
+              <div class="sim-tab hl-sim-tab hl-box" style="border-radius:3px 3px 0 0;">eFiling Im ▾</div>
+              <div class="sim-tab">Menaxhimi i Aksesit</div>
+              <div class="sim-tab">Rreth eFiling</div>
+            </div>
+            <div class="sim-body">
+              <div style="color:var(--orange);font-size:13px;font-weight:800;margin-bottom:7px;">Mirëseerdhët në e-Filing</div>
+              <div style="font-size:10px;color:#444;line-height:1.5;">
+                <strong>Versionet e kërkuesve:</strong><br>
+                • Internet Explorer nga v.10<br>
+                • Mozilla Firefox nga v.25<br>
+                • Google Chrome nga v.30
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="click-spot">
+          <div class="pulse-ring"></div>
+          <span class="pulse-label">Klikoni "eFiling Im" në menunë kryesore</span>
+        </div>
+      </div>
+    </div>
+    <div class="nav-buttons">
+      <button class="btn btn-back" onclick="goPrev()">&laquo; Kthehu</button>
+      <span class="nav-info">Hapi 2 / 6</span>
+      <button class="btn btn-next" onclick="goNext()">Vazhdo &raquo;</button>
+    </div>
+  </div>
+
+  <!-- ───── HAPI 3 ───── -->
+  <div class="step-panel" id="step-3">
+    <div class="step-hdr">
+      <div class="step-hdr-num">3</div>
+      <div class="step-hdr-info">
+        <div class="step-hdr-label">Hapi 3 nga 6</div>
+        <h3>Zgjidhni "Profili Im"</h3>
+        <p>Nga lista e seksionit eFiling Im</p>
+      </div>
+    </div>
+    <div class="step-body">
+      <div>
+        <div class="instr-list">
+          <div class="instr-item"><div class="instr-icon"></div><div class="instr-text">Pas klikimit të "eFiling Im", shfaqet një <strong>listë</strong> me 4 opsione</div></div>
+          <div class="instr-item"><div class="instr-icon"></div><div class="instr-text">Klikoni mbi opsionin <strong>"Profili Im"</strong> — i fundit në listë</div></div>
+          <div class="instr-item"><div class="instr-icon"></div><div class="instr-text">Do hapet faqja e profilit tuaj me të gjitha të dhënat</div></div>
+        </div>
+        <div class="info-box tip"><div>Lista ka 4 opsione: <strong>Dokumentat e Mia</strong>, <strong>Njoftimet e Mia</strong>, <strong>Çështjet e Mia</strong> dhe <strong>Profili Im</strong>. Nevojitet opsioni i fundit.</div></div>
+        <div class="checklist-wrap">
+          <div class="checklist-title">Kontrollo para se të vazhdosh</div>
+          <div class="checklist-items">
+            <div class="cl-item" onclick="toggleCL(this)"><div class="cl-box">✓</div><span class="cl-label">U shfaq lista me 4 opsione</span></div>
+            <div class="cl-item" onclick="toggleCL(this)"><div class="cl-box">✓</div><span class="cl-label">Gjeta opsionin "Profili Im"</span></div>
+            <div class="cl-item" onclick="toggleCL(this)"><div class="cl-box">✓</div><span class="cl-label">Klikova "Profili Im"</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="mockup-wrap">
+        <div class="mockup-label">Pamja e Ekranit</div>
+        <div class="browser-chrome">
+          <div class="browser-bar">
+            <div class="b-dot r"></div><div class="b-dot y"></div><div class="b-dot g"></div>
+            <div class="b-url">efiling.tatime.gov.al</div>
+          </div>
+          <div>
+            <div class="sim-dpt-hdr">
+              <div class="sim-dpt-logo-text">DREJTORIA E PËRGJITHSHME E TATIMEVE</div>
+              <div class="sim-etax"><span class="o">E-Tax</span> <span class="r">Shqipëri</span></div>
+            </div>
+            <div class="sim-nav" style="position:relative;">
+              <div class="sim-tab">Deklarata</div>
+              <div class="sim-tab">Kontabilitet</div>
+              <div class="sim-dd-wrap">
+                <div class="sim-tab active-sim-tab">eFiling Im ▾</div>
+                <div class="sim-dd-menu">
+                  <div class="sim-dd-item">Dokumentat e Mia</div>
+                  <div class="sim-dd-item">Njoftimet e Mia</div>
+                  <div class="sim-dd-item">Çështjet e Mia</div>
+                  <div class="sim-dd-item hl-dd hl-box">Profili Im &nbsp;<div class="pulse-ring" style="width:12px;height:12px;display:inline-block;vertical-align:middle;"></div></div>
+                </div>
+              </div>
+              <div class="sim-tab">Menaxhimi i Aksesit</div>
+            </div>
+            <div class="sim-body" style="min-height:80px;">
+              <div style="color:var(--orange);font-size:11px;font-weight:800;">Mirëseerdhët në e-Filing</div>
+            </div>
+          </div>
+        </div>
+        <div class="click-spot">
+          <div class="pulse-ring"></div>
+          <span class="pulse-label">Klikoni "Profili Im" nga lista</span>
+        </div>
+      </div>
+    </div>
+    <div class="nav-buttons">
+      <button class="btn btn-back" onclick="goPrev()">&laquo; Kthehu</button>
+      <span class="nav-info">Hapi 3 / 6</span>
+      <button class="btn btn-next" onclick="goNext()">Vazhdo &raquo;</button>
+    </div>
+  </div>
+
+  <!-- ───── HAPI 4 ───── -->
+  <div class="step-panel" id="step-4">
+    <div class="step-hdr">
+      <div class="step-hdr-num">4</div>
+      <div class="step-hdr-info">
+        <div class="step-hdr-label">Hapi 4 nga 6</div>
+        <h3>Klikoni "Detajet e Bankës"</h3>
+        <p>Në menunë në të majtë të faqes Profili Im</p>
+      </div>
+    </div>
+    <div class="step-body">
+      <div>
+        <div class="instr-list">
+          <div class="instr-item"><div class="instr-icon"></div><div class="instr-text">Faqja e profilit ka një <strong>menu në të majtë</strong> me disa opsione navigimi</div></div>
+          <div class="instr-item"><div class="instr-icon"></div><div class="instr-text">Klikoni mbi <strong>"Detajet e Bankës"</strong> — opsioni i katërt në listë</div></div>
+          <div class="instr-item"><div class="instr-icon"></div><div class="instr-text">Hapet seksioni ku mund të shihni ose shtoni llogarinë bankare</div></div>
+        </div>
+        <div class="info-box tip"><div>Menuja në të majtë ka: <strong>Detajet e Tatimpaguesit</strong>, <strong>Informacion i Përgjithshëm</strong>, <strong>Adresa</strong>, <strong>Përfaqësia Tatimore</strong>, <strong>Detajet e Bankës</strong>, <strong>Kodi Ekonomik Rev 2</strong>.</div></div>
+        <div class="checklist-wrap">
+          <div class="checklist-title">Kontrollo para se të vazhdosh</div>
+          <div class="checklist-items">
+            <div class="cl-item" onclick="toggleCL(this)"><div class="cl-box">✓</div><span class="cl-label">Hapa faqen e Profilit Im</span></div>
+            <div class="cl-item" onclick="toggleCL(this)"><div class="cl-box">✓</div><span class="cl-label">Aksesova menunë në të majtë</span></div>
+            <div class="cl-item" onclick="toggleCL(this)"><div class="cl-box">✓</div><span class="cl-label">Klikova "Detajet e Bankës"</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="mockup-wrap">
+        <div class="mockup-label">Pamja e Ekranit</div>
+        <div class="browser-chrome">
+          <div class="browser-bar">
+            <div class="b-dot r"></div><div class="b-dot y"></div><div class="b-dot g"></div>
+            <div class="b-url">efiling.tatime.gov.al/profili</div>
+          </div>
+          <div>
+            <div class="sim-dpt-hdr">
+              <div class="sim-dpt-logo-text">DREJTORIA E PËRGJITHSHME E TATIMEVE</div>
+              <div class="sim-etax"><span class="o">E-Tax</span> <span class="r">Shqipëri</span></div>
+            </div>
+            <div class="sim-nav">
+              <div class="sim-tab">Deklarata</div>
+              <div class="sim-tab">Kontabilitet</div>
+              <div class="sim-tab active-sim-tab">eFiling Im</div>
+              <div class="sim-tab">Menaxhimi i Aksesit</div>
+              <div class="sim-tab">Rreth eFiling</div>
+            </div>
+            <div class="sim-profile-layout">
+              <div class="sim-sidebar">
+                <div style="font-size:7px;font-weight:800;color:#666;margin-bottom:5px;text-transform:uppercase;">Tatimpagues</div>
+                <div class="sim-sidebar-item active-s">Detajet e Tatimpaguesit</div>
+                <div class="sim-sidebar-item">Informacion i Përgjithshëm</div>
+                <div class="sim-sidebar-item">Adresa</div>
+                <div class="sim-sidebar-item">Përfaqësia Tatimore</div>
+                <div class="sim-sidebar-item hl-s hl-sidebar">Detajet e Bankës &nbsp;<div class="pulse-ring" style="width:10px;height:10px;display:inline-block;vertical-align:middle;"></div></div>
+                <div class="sim-sidebar-item">Kodi Ekonomik Rev 2</div>
+              </div>
+              <div class="sim-profile-content">
+                <h5>Informacioni i Tatimpaguesit</h5>
+                <div class="sim-row"><span>Numri Unik</span><span>K5R7291X</span></div>
+                <div class="sim-row"><span>Emri</span><span>Emër Mbiemër</span></div>
+                <div class="sim-row"><span>Statusi</span><span>AKTIV, Aktiv</span></div>
+                <div class="sim-row"><span>Rajoni Tatimor</span><span>DRT Tiranë</span></div>
+                <div class="sim-row"><span>Zyra Tatimore</span><span>Agjensia Tatimore Tiranë</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="click-spot">
+          <div class="pulse-ring"></div>
+          <span class="pulse-label">Klikoni "Detajet e Bankës" nga menuja në të majtë</span>
+        </div>
+      </div>
+    </div>
+    <div class="nav-buttons">
+      <button class="btn btn-back" onclick="goPrev()">&laquo; Kthehu</button>
+      <span class="nav-info">Hapi 4 / 6</span>
+      <button class="btn btn-next" onclick="goNext()">Vazhdo &raquo;</button>
+    </div>
+  </div>
+
+  <!-- ───── HAPI 5 ───── -->
+  <div class="step-panel" id="step-5">
+    <div class="step-hdr">
+      <div class="step-hdr-num">5</div>
+      <div class="step-hdr-info">
+        <div class="step-hdr-label">Hapi 5 nga 6</div>
+        <h3>Klikoni "Shto një llogari bankare"</h3>
+        <p>Filloni procesin e shtimit të llogarisë suaj</p>
+      </div>
+    </div>
+    <div class="step-body">
+      <div>
+        <div class="instr-list">
+          <div class="instr-item"><div class="instr-icon"></div><div class="instr-text">Faqja "Detajet e Bankës" shfaq tabelën e llogarive bankare (fillimisht bosh)</div></div>
+          <div class="instr-item"><div class="instr-icon"></div><div class="instr-text">Klikoni butonin <strong>"Shto një llogari bankare"</strong> — në krye të faqes</div></div>
+          <div class="instr-item"><div class="instr-icon"></div><div class="instr-text">Do të hapet formulari i plotësimit të të dhënave bankare</div></div>
+        </div>
+        <div class="info-box success"><div>Mund të klikoni <strong>"Shkarko udhëzimin"</strong> për të marrë udhëzuesin zyrtar të DPT-së në format PDF.</div></div>
+        <div class="info-box warning"><div>Para se të shtoni llogarinë, sigurohuni që keni gati: <strong>numrin IBAN</strong>, <strong>emrin e bankës</strong> dhe <strong>vërtetimin bankar (PDF)</strong>.</div></div>
+        <div class="checklist-wrap">
+          <div class="checklist-title">Kontrollo para se të vazhdosh</div>
+          <div class="checklist-items">
+            <div class="cl-item" onclick="toggleCL(this)"><div class="cl-box">✓</div><span class="cl-label">Kam numrin IBAN të llogarisë sime</span></div>
+            <div class="cl-item" onclick="toggleCL(this)"><div class="cl-box">✓</div><span class="cl-label">Kam vërtetimin bankar (PDF nga banka)</span></div>
+            <div class="cl-item" onclick="toggleCL(this)"><div class="cl-box">✓</div><span class="cl-label">Klikova "Shto një llogari bankare"</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="mockup-wrap">
+        <div class="mockup-label">Pamja e Ekranit</div>
+        <div class="browser-chrome">
+          <div class="browser-bar">
+            <div class="b-dot r"></div><div class="b-dot y"></div><div class="b-dot g"></div>
+            <div class="b-url">efiling.tatime.gov.al/banka</div>
+          </div>
+          <div>
+            <div class="sim-dpt-hdr">
+              <div class="sim-dpt-logo-text">DREJTORIA E PËRGJITHSHME E TATIMEVE</div>
+              <div class="sim-etax"><span class="o">E-Tax</span> <span class="r">Shqipëri</span></div>
+            </div>
+            <div class="sim-nav">
+              <div class="sim-tab">Deklarata</div>
+              <div class="sim-tab">Kontabilitet</div>
+              <div class="sim-tab active-sim-tab">eFiling Im</div>
+              <div class="sim-tab">Menaxhimi i Aksesit</div>
+              <div class="sim-tab">Rreth eFiling</div>
+            </div>
+            <div class="sim-body">
+              <div style="font-size:11px;font-weight:800;color:var(--orange);margin-bottom:8px;">Tatimpagues: Emër Mbiemër, K5R7291X</div>
+              <div style="margin-bottom:8px;display:flex;gap:6px;">
+                <button class="sim-bank-add hl-box" style="border-radius:4px;">+ Shto një llogari bankare</button>
+                <button class="sim-dl-btn">Shkarko udhëzimin</button>
+              </div>
+              <table style="width:100%;border-collapse:collapse;font-size:9px;">
+                <tr style="background:#f0f0f0;">
+                  <th style="padding:4px;text-align:left;font-weight:800;color:#333;border:1px solid #ddd;">Emri i bankës</th>
+                  <th style="padding:4px;text-align:left;font-weight:800;color:#333;border:1px solid #ddd;">SWIFT</th>
+                  <th style="padding:4px;text-align:left;font-weight:800;color:#333;border:1px solid #ddd;">IBAN</th>
+                  <th style="padding:4px;text-align:left;font-weight:800;color:#333;border:1px solid #ddd;">Monedha</th>
+                </tr>
+                <tr>
+                  <td colspan="4" style="padding:10px;text-align:center;color:#888;font-style:italic;border:1px solid #ddd;">Nuk ka të dhëna të disponueshme në tabelë</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="click-spot">
+          <div class="pulse-ring"></div>
+          <span class="pulse-label">Klikoni "Shto një llogari bankare"</span>
+        </div>
+      </div>
+    </div>
+    <div class="nav-buttons">
+      <button class="btn btn-back" onclick="goPrev()">&laquo; Kthehu</button>
+      <span class="nav-info">Hapi 5 / 6</span>
+      <button class="btn btn-next" onclick="goNext()">Vazhdo &raquo;</button>
+    </div>
+  </div>
+
+  <!-- ───── HAPI 6 ───── -->
+  <div class="step-panel" id="step-6">
+    <div class="step-hdr">
+      <div class="step-hdr-num">6</div>
+      <div class="step-hdr-info">
+        <div class="step-hdr-label">Hapi 6 — Hapi i Fundit</div>
+        <h3>Plotësoni Formularin dhe Klikoni "Ruaj"</h3>
+        <p>Plotësoni të gjitha fushat e detyrueshme dhe konfirmoni</p>
+      </div>
+    </div>
+    <div class="step-body">
+      <div>
+        <div class="field-list">
+          <div class="field-item">
+            <div class="req-badge req-yes">E detyrueshme</div>
+            <div class="field-content">
+              <div class="field-name">Banka</div>
+              <div class="field-desc">Zgjidhni bankën tuaj nga lista (BKT, Raiffeisen, OTP, Credins, Intesa...)</div>
+            </div>
+            <div class="field-tip-col"></div>
+          </div>
+          <div class="field-item">
+            <div class="req-badge req-no">Opsionale</div>
+            <div class="field-content">
+              <div class="field-name">SWIFT</div>
+              <div class="field-desc">Plotësohet automatikisht pas zgjedhjes së bankës. Shembull: BKTRALBAXXX</div>
+            </div>
+            <div class="field-tip-col"><button class="tip-btn">Çfarë është<div class="tip-popup">SWIFT është kodi ndërkombëtar i identifikimit të bankës. E gjeni automatikisht ose në faqen e bankës suaj.</div></button></div>
+          </div>
+          <div class="field-item">
+            <div class="req-badge req-yes">E detyrueshme</div>
+            <div class="field-content">
+              <div class="field-name">IBAN</div>
+              <div class="field-desc">Numri ndërkombëtar i llogarisë bankare — 28 karaktere, fillon me AL</div>
+              <div class="iban-fmt">AL91 XXXX XXXX XXXX XXXX XXXX XXXX</div>
+            </div>
+            <div class="field-tip-col"><button class="tip-btn">Ku e gjej?<div class="tip-popup">IBAN-in e gjeni: (1) Në aplikacionin e bankës suaj, (2) Në internet banking, (3) Duke pyetur bankën. Fillon gjithmonë me "AL" për llogaritë shqiptare.</div></button></div>
+          </div>
+          <div class="field-item">
+            <div class="req-badge req-yes">E detyrueshme</div>
+            <div class="field-content">
+              <div class="field-name">Lloji i Monedhës</div>
+              <div class="field-desc">Zgjidhni: ALL (Lekë)</div>
+            </div>
+            <div class="field-tip-col"></div>
+          </div>
+          <div class="field-item">
+            <div class="req-badge req-no">Opsionale</div>
+            <div class="field-content">
+              <div class="field-name">Limiti</div>
+              <div class="field-desc">Limiti maksimal i transaksioneve (p.sh. 500000 ALL)</div>
+            </div>
+            <div class="field-tip-col"></div>
+          </div>
+          <div class="field-item">
+            <div class="req-badge req-yes">E detyrueshme</div>
+            <div class="field-content">
+              <div class="field-name">E vlefshme nga</div>
+              <div class="field-desc">Data e vlefshmërisë (format: DD.MM.YYYY). Shembull: 15.10.2025</div>
+            </div>
+            <div class="field-tip-col"></div>
+          </div>
+          <div class="field-item">
+            <div class="req-badge req-yes">E detyrueshme</div>
+            <div class="field-content">
+              <div class="field-name">Vërtetim hapje llogarie (PDF)</div>
+              <div class="field-desc">Dokumenti zyrtar nga banka juaj që vërteton llogarinë. Duhet të jetë PDF, lëshuar jo më herët se 3 muaj.</div>
+            </div>
+            <div class="field-tip-col"><button class="tip-btn">Detajet e dokumentit<div class="tip-popup">Dokument zyrtar nga banka ("Vërtetim llogarie" ose "Ekstrakt"). Duhet të jetë PDF, lëshuar jo më herët se 3 muaj. E merrni në degën e bankës ose online banking.</div></button></div>
+          </div>
+        </div>
+
+      <div class="mockup-wrap">
+        <div class="mockup-label">Formulari i Bankës</div>
+        <div class="browser-chrome">
+          <div class="browser-bar">
+            <div class="b-dot r"></div><div class="b-dot y"></div><div class="b-dot g"></div>
+            <div class="b-url">efiling.tatime.gov.al/banka/shto</div>
+          </div>
+          <div>
+            <div class="sim-dpt-hdr">
+              <div class="sim-dpt-logo-text">DREJTORIA E PËRGJITHSHME E TATIMEVE</div>
+              <div class="sim-etax"><span class="o">E-Tax</span> <span class="r">Shqipëri</span></div>
+            </div>
+            <div class="sim-nav">
+              <div class="sim-tab">Deklarata</div>
+              <div class="sim-tab">Kontabilitet</div>
+              <div class="sim-tab active-sim-tab">eFiling Im</div>
+              <div class="sim-tab">Menaxhimi i Aksesit</div>
+            </div>
+            <div class="sim-body">
+              <div class="sim-bank-form">
+                <h5>Detajet e Bankës</h5>
+                <div class="sim-bf">
+                  <label>Banka <span class="req">*</span></label>
+                  <select class="sim-bfinput ok" style="border-color:var(--green);background:#f0fff8;"><option>Banka Kombëtare Tregtare (BKT)</option></select>
+                </div>
+                <div class="sim-bfgrid2">
+                  <div class="sim-bf">
+                    <label>SWIFT</label>
+                    <input class="sim-bfinput ok" type="text" value="BKTRALBAXXX">
+                  </div>
+                  <div class="sim-bf">
+                    <label>Monedha <span class="req">*</span></label>
+                    <select class="sim-bfinput ok"><option>ALL (Lek)</option></select>
+                  </div>
+                </div>
+                <div class="sim-bf">
+                  <label>IBAN <span class="req">*</span></label>
+                  <input class="sim-bfinput ok" type="text" value="AL91 2121 2121 2121 2121 2121 2121">
+                </div>
+                <div class="sim-bfgrid2">
+                  <div class="sim-bf">
+                    <label>Limiti</label>
+                    <input class="sim-bfinput" type="text" value="500000">
+                  </div>
+                  <div class="sim-bf">
+                    <label>E vlefshme nga <span class="req">*</span></label>
+                    <input class="sim-bfinput ok" type="text" value="15.10.2025">
+                  </div>
+                </div>
+                <div class="sim-bf">
+                  <label>Vërtetim hapje llogarie (pdf) <span class="req">*</span></label>
+                  <div style="display:flex;gap:5px;align-items:center;">
+                    <button style="font-size:8px;padding:3px 7px;background:#eee;border:1px solid #ccc;border-radius:3px;cursor:pointer;font-family:'Nunito',sans-serif;">Zgjidhni skedar</button>
+                    <span style="font-size:9px;color:var(--green);font-weight:700;">Vertetim_BKT.pdf &#10003;</span>
+                  </div>
+                </div>
+                <div style="overflow:hidden;">
+                  <button class="sim-save pulse-save-btn">Ruaj</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="click-spot">
+          <div class="pulse-ring"></div>
+          <span class="pulse-label">Plotësoni të gjitha fushat dhe klikoni "Ruaj"</span>
+        </div>
+      </div>
+    </div>
+    <div class="nav-buttons">
+      <button class="btn btn-back" onclick="goPrev()">&laquo; Kthehu</button>
+      <span class="nav-info">Hapi 6 / 6</span>
+      <button class="btn btn-finish" onclick="goFinish()">Përfundo</button>
+    </div>
+  </div>
+
+  <!-- ───── COMPLETION ───── -->
+  <div class="completion" id="completionScreen">
+
+  <!-- Top accent bar -->
+  <div class="compl-accent-bar"></div>
+
+  <!-- Check mark -->
+  <div class="compl-check-wrap">
+    <div class="compl-check-outer">
+      <div class="compl-check-inner"></div>
+    </div>
+  </div>
+
+  <!-- Main title -->
+  <h2 class="compl-title">URIME! REGJISTRIMI U KRYE ME SUKSES!</h2>
+
+  <!-- Sub text — exactly from Word -->
+  <p class="compl-sub">
+    Keni ndjekur të gjitha hapat dhe regjistruat llogarinë tuaj bankare<br>
+    në sistemin e-Filing të DPT-së. Mund të vazhdoni me deklaratat tuaja tatimore.
+  </p>
+
+  <!-- Divider -->
+  <div class="compl-divider"></div>
+
+  <!-- Three info cards -->
+  <div class="compl-cards">
+
+    <div class="compl-card">
+      <div class="compl-card-icon">
+        <div class="cci-bar"></div>
+        <div class="cci-bar cci-bar-short"></div>
+        <div class="cci-bar"></div>
+      </div>
+      <div class="compl-card-body">
+        <div class="compl-card-title">Sa kohë zgjat procesi?</div>
+        <div class="compl-card-text">DPT rishikon të dhënat bankare brenda 1–3 ditëve pune pas dorëzimit.</div>
+      </div>
+    </div>
+
+    <div class="compl-card">
+      <div class="compl-card-icon">
+        <div class="cci-circle"></div>
+        <div class="cci-line"></div>
+        <div class="cci-line cci-line-short"></div>
+      </div>
+      <div class="compl-card-body">
+        <div class="compl-card-title">Konfirmimi</div>
+        <div class="compl-card-text">Do merrni një email konfirmimi në adresën e regjistruar pas miratimit të llogarisë.</div>
+      </div>
+    </div>
+
+    <div class="compl-card">
+      <div class="compl-card-icon">
+        <div class="cci-arrow-wrap">
+          <div class="cci-arrow-right"></div>
+          <div class="cci-arrow-left"></div>
+        </div>
+      </div>
+      <div class="compl-card-body">
+        <div class="compl-card-title">Ndryshim në të ardhmen</div>
+        <div class="compl-card-text">Për ndryshim llogarie bankare, ndiqni të njëjtat hapa dhe shtoni llogarinën e re.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Restart button -->
+  <button class="compl-restart-btn" onclick="restartGuide()">Rifillo</button>
+
+</div>
+
+
+</div><!-- /ef-container -->
+</div><!-- /ef-main -->
+
+<!-- ═════════════════════════════════════════
+     FOOTER — matches real e-Filing
+═════════════════════════════════════════ -->
+<div class="ef-footer">
+  <div class="ef-footer-left">Ky sistem elektronik mirëmbahet nga operatori ekonomik: ilubINFO</div>
+  <div class="ef-footer-right">e-Filing © by wedoIT-solutions GmbH 2026</div>
+</div>
+
+<script>
+  const TOTAL = 6;
+  let cur = 1;
+
+  const labels = [
+    'Hapi 1 — Hyrja në Sistem',
+    'Hapi 2 — eFiling Im',
+    'Hapi 3 — Profili Im',
+    'Hapi 4 — Detajet e Bankës',
+    'Hapi 5 — Shto Llogari Bankare',
+    'Hapi 6 — Plotëso Formularin & Ruaj'
+  ];
+
+  function buildDots() {
+    const c = document.getElementById('stepDots');
+    c.innerHTML = '';
+    for (let i = 1; i <= TOTAL; i++) {
+      const d = document.createElement('div');
+      d.className = 'step-dot';
+      d.id = 'dot-' + i;
+      d.title = labels[i-1];
+      d.textContent = i;
+      d.onclick = () => goTo(i);
+      c.appendChild(d);
+    }
+    refresh();
+  }
+
+  function refresh() {
+    for (let i = 1; i <= TOTAL; i++) {
+      const d = document.getElementById('dot-' + i);
+      if (!d) continue;
+      d.className = 'step-dot';
+      if (i < cur)      { d.classList.add('done'); d.textContent = '✓'; }
+      else if (i === cur){ d.classList.add('active'); d.textContent = i; }
+      else               { d.textContent = i; }
+    }
+    const pct = Math.round(((cur - 1) / TOTAL) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressPct').textContent = pct + '%';
+    document.getElementById('progressLabel').textContent = labels[cur - 1];
+    document.getElementById('ribbonCounter').textContent = cur + ' / ' + TOTAL;
+  }
+
+  function showStep(n) {
+    document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+    const p = document.getElementById('step-' + n);
+    if (p) p.classList.add('active');
+    document.getElementById('completionScreen').classList.remove('show');
+    refresh();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function goNext() { if (cur < TOTAL) { cur++; showStep(cur); } }
+  function goPrev() { if (cur > 1)    { cur--; showStep(cur); } }
+  function goTo(n)  { cur = n; showStep(cur); }
+
+  function goFinish() {
+    document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('completionScreen').classList.add('show');
+    document.getElementById('progressFill').style.width = '100%';
+    document.getElementById('progressPct').textContent = '100%';
+    document.getElementById('progressLabel').textContent = 'Përfunduar me sukses';
+    document.getElementById('ribbonCounter').textContent = '6 / 6';
+    for (let i = 1; i <= TOTAL; i++) {
+      const d = document.getElementById('dot-' + i);
+      if (d) { d.className = 'step-dot done'; d.textContent = '✓'; }
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function restartGuide() {
+    cur = 1;
+    document.querySelectorAll('.cl-item').forEach(el => el.classList.remove('checked'));
+    showStep(1);
+  }
+
+  function toggleCL(el) { el.classList.toggle('checked'); }
+
+  buildDots();
+  showStep(1);
+</script>
+
+</div>
+</div>
+
+<!-- FOOTER -->
+<div class="ef-footer">
+  <div class="ef-footer-left">Ky sistem elektronik mirëmbahet nga operatori ekonomik: ilubINFO</div>
+  <div class="ef-footer-right">e-Filing &copy; by wedoIT-solutions GmbH 2026</div>
+</div>
+
+</body>
+</html>
